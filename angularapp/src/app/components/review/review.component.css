@@ -1,0 +1,61 @@
+/* Centering Review Form */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+/* Card Styling */
+.card {
+  max-width: 600px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff, #f4f4ff);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Labels */
+label {
+  font-weight: bold;
+  color: #333;
+}
+ 
+/* Stars Rating */
+.stars {
+  gap: 5px;
+}
+ 
+.stars span {
+  font-size: 2em;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+ 
+.stars span.filled {
+  color: #ffcc00;
+}
+ 
+.stars span:hover, .stars span:hover ~ span {
+  color: #ff9800;
+}
+ 
+/* Success Popup */
+.success-popup-container {
+  display: flex;
+  justify-content: center;
+}
+ 
+.success-popup {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+/* Card Styling - Increased Size */
+.card {
+  max-width: 800px; /* Increased from 600px */
+  width: 90%; /* More responsive */
+  padding: 30px; /* More spacious */
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ffffff, #f4f4ff);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

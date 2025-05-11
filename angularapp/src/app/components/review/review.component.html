@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="card shadow-lg p-4">
+    <h3 class="text-center text-primary">Write a Review</h3>
+    <form [formGroup]="addReviewForm" (ngSubmit)="submitReview()">
+     
+      <!-- Review Text -->
+      <div class="mb-3">
+        <label for="reviewText" class="form-label">Review Text:</label>
+        <textarea id="reviewText" formControlName="reviewText" class="form-control" placeholder="Enter your review"></textarea>
+        <div *ngIf="addReviewForm.controls['reviewText'].invalid && addReviewForm.controls['reviewText'].touched" class="text-danger small mt-1">
+          Please enter a valid review (3-300 characters).
+        </div>
+      </div>
+ 
+      <!-- Rating Section -->
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating:</label>
+        <div class="stars d-flex">
+          <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating(star)"
+            [ngClass]="{'filled': star <= addReviewForm.controls['rating'].value}">&#9733;</span>
+        </div>
+        <div *ngIf="addReviewForm.controls['rating'].invalid && addReviewForm.controls['rating'].touched" class="text-danger small mt-1">
+          Rating must be between 1 and 5.
+        </div>
+      </div>
+ 
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="addReviewForm.invalid">Submit Review</button>
+    </form>
+  </div>
+</div>
+ 
+<!-- Success Popup -->
+<div class="success-popup-container mt-3" *ngIf="showSuccessPopup">
+  <div class="success-popup alert alert-success text-center shadow-lg">
+    Review added successfully!
+  </div>
+</div>

@@ -1,0 +1,75 @@
+
+<body>
+  <form [formGroup]="addProductForm" (ngSubmit)="createProduct()">
+    <h1>Product Form</h1>
+    <div class="form-group">
+      <label for="productName">Product Name:</label>
+      <input id="productName" type="text" formControlName="productName" class="form-control">
+      <div *ngIf="addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched">
+        <small class="text-danger">Product name is required (3-20 characters).</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="addProductForm.get('description')?.invalid && addProductForm.get('description')?.touched">
+        <small class="text-danger">Description is required (3-500 characters).</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input id="price" type="number" formControlName="price" class="form-control">
+      <div *ngIf="addProductForm.get('price')?.invalid && addProductForm.get('price')?.touched">
+        <small class="text-danger">Price must be at least 1.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="stockQuantity">Stock Quantity:</label>
+      <input id="stockQuantity" type="number" formControlName="stockQuantity" class="form-control">
+      <div *ngIf="addProductForm.get('stockQuantity')?.invalid && addProductForm.get('stockQuantity')?.touched">
+        <small class="text-danger">Stock quantity must be at least 0 and no decimal place is allowed.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label><br>
+      <select id="category" formControlName="category" class="form-control">
+        <option value="" disabled selected>Select a category</option>
+        <option value="Home Appliances">Home Appliances</option>
+        <option value="Toys">Toys</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Beauty">Beauty</option>
+      </select>
+      <div *ngIf="addProductForm.controls['category'].invalid && addProductForm.controls['category'].touched">
+        <span class="text-danger">Category selection is required.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Brand:</label>
+      <input id="brand" type="text" formControlName="brand" class="form-control">
+      <div *ngIf="addProductForm.get('brand')?.invalid && addProductForm.get('brand')?.touched">
+        <small class="text-danger">Brand is required (3-20 characters).</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="coverImage">Cover Image:</label>
+      <input id="coverImage" type="file" (change)="onFileChange($event)" class="form-control">
+    </div><br>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addProductForm.invalid">
+      {{ isEditing ? 'Update Product' : 'Add Product' }}
+    </button>
+
+    <div *ngIf="successMessage">
+      <p class="text-success">{{ successMessage }}</p>
+    </div>
+  </form>
+</body>
